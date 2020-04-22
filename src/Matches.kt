@@ -13,21 +13,11 @@ class Matches(val amountofPlayers: Int, val listofPlayers: ArrayList<Player>) {
                 secondGroup.add(listofPlayers[i])
             }
         }
-        secondGroup.sortByDescending { it.id } /// do usuniecia
 
-//        secondGroup.forEach {
-//            println("cipsko ${it.name} z id ${it.id}")
-//        }
     }
 
     fun drawRounds() {
         for (j in 0..listofPlayers.size - 2) {
-            if(j==0 || listofPlayers.size-1 %j ==0){
-                println("///////////////////////////////////////////////////")
-                println("runda 1")
-            }
-
-
             for (i in 0 until firstGroup.size) {
                 matchHistory.add(Dual(firstGroup[i].id, secondGroup[i].id))
             }
@@ -37,15 +27,22 @@ class Matches(val amountofPlayers: Int, val listofPlayers: ArrayList<Player>) {
             secondGroup.removeAt(0)
         }
 
+        var ite: Int = 1
+        var j: Int = 0
         matchHistory.forEach {
+            if (j % (amountofPlayers / 2) == 0) {
+                println("///////////////////////////////////////////////////")
+                println("----Runda ${ite}----")
+                ite++
+            }
+            j++
+
             val blackPlayer = listofPlayers[it.blackPlayerId - 1]
             val whitePlayer = listofPlayers[it.whitePlayerId - 1]
             var isResult = false
             var result: String? = ""
 
-            if (blackPlayer.id != amountofPlayers && whitePlayer.id != amountofPlayers) {
-
-
+            if ((blackPlayer.name != "Bot" && whitePlayer.name != "Bot")) {
                 println("Białymi gra: ${whitePlayer.name}")
                 println("vs.")
                 println("Czarnymi gra: ${blackPlayer.name}")
@@ -88,7 +85,8 @@ class Matches(val amountofPlayers: Int, val listofPlayers: ArrayList<Player>) {
         listofPlayers.sortByDescending { it.points }
         var i = 1
         listofPlayers.forEach {
-            println("$i. ${it.name} punktow ${it.points}")
+            if (it.name != "Bot")
+                println("$i. ${it.name} punktow ${it.points}")
             i++
         }
     }

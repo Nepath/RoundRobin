@@ -65,7 +65,7 @@ fun createGame(){
 
 
 
-    //   listofPlayers.shuffle()
+       listofPlayers.shuffle()
 
     for(i in 0 until amountOfPlayers){
         listofPlayers[i].id = i + 1
@@ -81,5 +81,7 @@ fun createGame(){
 }
 
 private fun authors(){
-
+    println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    println("----Mateusz Adamek----\n----Mateusz Kowol----")
+    println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 }
